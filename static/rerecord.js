@@ -3,7 +3,7 @@ function begin(){
     index = index + 1
     audio_number = index + 1
 
-    if (length > 0){
+    if (length > 0 && index < length){
         var indexing = document.getElementById("indexing");
         indexing.appendChild(document.createTextNode('Recording: ' + audio_number + ' of ' + length))
         indexing.appendChild(document.createElement("br"))
