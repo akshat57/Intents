@@ -1,3 +1,27 @@
 Query :नमस्ते
-Response : नमस्कार!
+Response : नमस्कार! मैं आपकी कैसे सहायता करूं?
+
+Query :मेरे अकाउंट में कितना बैलेंस है
+Response : What is your name?
+
+Query :मेरा नाम रमेश है
+Response : What is your account number?
+
+Query :12345
+Response : रमेश, आपके अकाउंट में कुछ नहीं है
+
+Query :नमस्ते
+Response : आपका दिन शुभ हो! मैं आपकी कैसे सहायता करूं?
+
+Query :लगता है कुछ हो रहा है
+Response : What is your name?
+
+Query :लगता है सब रिपीट हो रहा है
+Response : What is your name?
+
+Query :यह क्या हो रहा है भैया
+Response : भैया, what is your account number?
+
+Query :हमको समझ नहीं आई
+Response : नमस्कार! मैं आपकी कैसे सहायता करूं?
 

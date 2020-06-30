@@ -36,6 +36,7 @@ def login_no():
     login_id = request.form['login_id']
     return render_template('new_id_created.html', login_id=login_id)
 
+
 @app.route("/recording/<name>", methods=['GET', 'POST'])
 def recording(name):
 
@@ -62,7 +63,7 @@ def recording(name):
         query, response, intent, success = talk_to_agent(parent_directory, filename, sample_rate)
 
         #Display on website
-        response_file_name = "r" + str(random.randint(0,100000)) + ".txt"
+        response_file_name = "r" + str(random.randint(0,10)) + ".txt"
         response_location = parent_directory + '/templates/'
         file = open( response_location + response_file_name,"w")
         file.write('Querry: ' + query + '<br>' + 'Response: ' + response)
@@ -91,9 +92,14 @@ def recording(name):
         return render_template("index_recording.html", name=name, response=response)
 
 
+
 @app.route('/decide_repeat', methods=['POST'])
 def process():
+    print('----------entered here-------------')
+    input_message = request.form['messagebox']
+    print(input_message)
     return render_template('index_decide_repeat.html')
+
 
 @app.route('/repeat', methods=['GET', 'POST'])
 def repeat():
@@ -110,9 +116,18 @@ def repeat():
         with open(filename, 'wb') as audio:
             f.save(audio)
         print('file uploaded successfully')
+
+        file = open( "rerecord.txt","a")
+        file.write(filename + '\n')
+        file.close()
+
     except:
         print('first entry', request.method)
         language = request.form['language']
+        file = open( "second_language.txt","w")
+        file.write(language)
+        file.close()
+
 
     os.chdir(session['parent_directory'])
     return render_template('index_repeat.html', filenames=filenames, length=len(filenames))
@@ -124,7 +139,7 @@ def download_file(filename):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5007)
 
 '''@app.route("/", methods=['POST', 'GET'])
 def index():

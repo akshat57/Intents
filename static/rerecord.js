@@ -1,7 +1,16 @@
 function begin(){
     console.log('And it begins')
-    //console.log(filename)
     index = index + 1
+    audio_number = index + 1
+
+    if (length > 0){
+        var indexing = document.getElementById("indexing");
+        indexing.appendChild(document.createTextNode('Recording: ' + audio_number + ' of ' + length))
+        indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createElement("br"))
+    }
+
+    
     if (index < length){
         console.log(typeof filenames, typeof index, typeof length)
         console.log(index, length)
@@ -9,6 +18,7 @@ function begin(){
         var filename = filenames[index]
 
         var rerecord = document.getElementById("rerecord");
+
         rerecord.innerHTML = '<audio id="audio-player" controls="controls" src="/play_audio/' + filename + '" type="audio/wav">';
         rerecord.appendChild(document.createElement("br"))
         rerecord.appendChild(document.createElement("br"))

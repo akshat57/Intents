@@ -1,9 +1,0 @@
-Query :नमस्ते
-Response : आपका दिन शुभ हो!
-
-Query :मेरे अकाउंट में कितना बैलेंस है
-Response : What is your name?
-
-Query :मेरा नाम रमेश है
-Response : What is your account number?
-

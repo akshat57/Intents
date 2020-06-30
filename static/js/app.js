@@ -17,6 +17,36 @@ var stopButton = document.getElementById("stopButton");
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 
+function clickedYes(){
+    var myDiv = document.getElementById("myDiv")
+    myDiv.appendChild(document.createElement("br"))
+    myDiv.appendChild(document.createElement("br"))
+    myDiv.appendChild(document.createTextNode('Message Box'))
+
+    //creating form
+    var f = document.createElement("form");
+    f.method = "POST"
+    f.action = "/decide_repeat"
+
+    //Create Text Box
+    var input = document.createElement("input");
+    input.type = "text";
+    input.name = "messagebox"
+
+    var input_button = document.createElement("input");
+    input_button.type = "submit";
+    input_button.value = "Submit";
+
+    f.appendChild(input_button)
+    f.appendChild(input)
+
+    myDiv.appendChild(f)
+
+    myDiv.appendChild(document.createElement("br"))
+    myDiv.appendChild(document.createElement("br"))
+
+}
+
 
 function startRecording() {
     console.log("recordButton clicked");

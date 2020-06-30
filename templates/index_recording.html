@@ -35,11 +35,9 @@
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script type="text/javascript" src="/static/js/app.js"></script>
 
-    <div class="myDiv">
+    <div id="myDiv">
       <h3>Is the conversation finished? </h3>
-      <form method="POST" action="/decide_repeat">
-        <input type="submit" value="Yes">
-    </form>
+      <a href="#" id="yes" onclick="clickedYes()">Yes</a>
     </div>
   </body>
 </html>
