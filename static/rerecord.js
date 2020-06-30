@@ -7,6 +7,8 @@ function begin(){
         var indexing = document.getElementById("indexing");
         indexing.appendChild(document.createTextNode('Recording: ' + audio_number + ' of ' + length))
         indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createTextNode('Press play to hear what you recorded. Then press record to record again. '))
+        indexing.appendChild(document.createElement("br"))
         indexing.appendChild(document.createElement("br"))
     }
 
@@ -156,6 +158,7 @@ function DownloadIt(blob){
 
 
     console.log('finished')
+    document.getElementById("indexing").innerHTML = "";
     document.getElementById("rerecord").innerHTML = "";
     begin()
 }

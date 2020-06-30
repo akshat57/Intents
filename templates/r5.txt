@@ -1,1 +1,1 @@
-Querry: लगता है सब रिपीट हो रहा है<br>Response: What is your name?
+Querry: नमस्ते<br>Response: नमस्ते! मैं आपकी कैसे सहायता करूं?
