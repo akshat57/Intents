@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="icon" href="data:,">
+    <meta charset="UTF-8">
+    <title>Simple Recorder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <h1>New ID created!</h1>
+
+    <p>Your id is : {{ login_id }}</p>
+
+    <p>If your ID IS INCORRECT, click below to re-enter.
+        <form method="POST" action="/">
+            <input type="submit" value="Re-Enter LoginID">
+        </form>
+    </p>
+    <br><br><br>
+    <p>If YOU'RE HAPPY with your ID, please click below to proceed.
+        <form method="POST" action="/recording/{{ login_id }}">
+            <input type="submit" value="Re-Enter LoginID">
+        </form>
+    </p>
+
+    printing random variable <var>{{ login_id }}</var>
+
+  </body>
+</html>

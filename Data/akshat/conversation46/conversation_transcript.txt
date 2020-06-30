@@ -1,0 +1,6 @@
+Query :नमस्ते
+Response : नमस्कार! मैं आपकी कैसे सहायता करूं?
+
+Query :मेरे अकाउंट में कितना बैलेंस है
+Response : What is your name?
+

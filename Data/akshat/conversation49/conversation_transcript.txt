@@ -1,0 +1,12 @@
+Query :नमस्ते
+Response : आपका दिन शुभ हो! मैं आपकी कैसे सहायता करूं?
+
+Query :मेरे अकाउंट में कितना बैलेंस है
+Response : What is your name?
+
+Query :रमेश
+Response : What is your account number?
+
+Query :1234
+Response : रमेश, आपके अकाउंट में कुछ नहीं है
+

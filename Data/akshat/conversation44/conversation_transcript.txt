@@ -1,0 +1,6 @@
+Query :नमस्ते
+Response : नमस्ते! मैं आपकी कैसे सहायता करूं?
+
+Query :मुझे पैसे जमा करवाने हैं
+Response : What is your name?
+

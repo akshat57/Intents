@@ -1,0 +1,6 @@
+Query :हेलो
+Response : क्या कहा आपने?
+
+Query :नमस्ते
+Response : नमस्कार!
+
