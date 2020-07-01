@@ -1,1 +1,0 @@
-Querry: लगता है सब रिपीट हो रहा है<br>Response: What is your name?
