@@ -1,6 +1,7 @@
 console.log('Hello')
 
 function clickedYes(){
+
     console.log('CLICKED YES!!')
     var container = document.getElementById("container");
 
@@ -18,12 +19,22 @@ function clickedYes(){
     //Create language list
     var languageList = document.createElement("select");
     languageList.id = "languages";
-    languageList.onchange = "CheckColors(this.value)";
+    languageList.name = "languages"
+    languageList.onchange = function(){
+        console.log('hahahahah')
+        var element=document.getElementById("otherlanguage");
+        if(this.value=='Other'){
+          console.log('')
+          element.style.display='block';
+        } 
+       };
 
     //create language
     var option = document.createElement("option");
     option.value = ""
     option.text = "-- choose one --"
+    option.disabled = true
+    option.selected = true
     languageList.appendChild(option);
 
     var option = document.createElement("option");
@@ -75,17 +86,29 @@ function clickedYes(){
     option.value = "Other"
     option.text = "Other"
     languageList.appendChild(option);
-
-    var button = document.createElement("submit")
-    button.value = "Submit"
-    languageList.appendChild(button);
     
     f.appendChild(languageList);
-    container.appendChild(f)
-    /*
 
-    container.appendChild(input_button)*/
+    //Create Text Box
+    input = document.createElement("input");
+    input.type = "text";
+    input.name = "otherlanguage"
+    input.id = "otherlanguage"
+    input.style = "display:none"
+    f.appendChild(input);
+
+    //create submit button
+    var input_button = document.createElement("input");
+    input_button.type = "submit";
+    input_button.value = "Submit";
+    f.appendChild(input_button);
+    
+    container.appendChild(f)
+
 }
+
+
+
 
 
 function clickedNo(){

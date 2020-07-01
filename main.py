@@ -17,6 +17,8 @@ app.config['SECRET_KEY'] = 'yabadabadoooo'
 @app.route('/', methods=['GET', 'POST'])
 def index():
     session['parent_directory'] = os.getcwd()
+    session['context'] = ['नमस्ते! मैं आपकी क्या सहायता करूं ?']
+
     return render_template('index.html', myvariable='', login='')
 
 
@@ -72,11 +74,14 @@ def recording(name):
             file = open( 'conversation_list.txt', 'a')
             file.write(filename + '\n')
             file.close()
+            session['context'].append(response)
+            session['context'] = session['context']
             
 
         os.chdir(parent_directory)
 
         print(response)
+    
         return render_template(response_file_name, name=name, response='Hi')
 
     else:
@@ -87,7 +92,7 @@ def recording(name):
         session['working_directory'] = start_conversation(name)
         print('Working directory:', session['working_directory'])
 
-        response = 'नमस्ते! मैं आपकी क्या सहायता करूं ?'
+        response = session['context']
         return render_template("index_recording.html", name=name, response=response)
 
 
@@ -106,6 +111,7 @@ def process():
 
 @app.route('/repeat', methods=['GET', 'POST'])
 def repeat():
+    print(len(session['context']), session['context'])
     os.chdir(session['working_directory'])
     filenames = get_file_names(session['working_directory'])
     print(filenames)
@@ -133,9 +139,10 @@ def repeat():
         file.write(language)
         file.close()
 
-
+    print(session['context'])
     os.chdir(session['parent_directory'])
-    return render_template('index_repeat.html', filenames=filenames, length=len(filenames))
+    return render_template('index_repeat.html', filenames=filenames, length=len(filenames), context=session['context'])
+
 
 @app.route('/play_audio/<path:filename>')
 def download_file(filename):

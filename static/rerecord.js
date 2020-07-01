@@ -8,6 +8,9 @@ function begin(){
         indexing.appendChild(document.createTextNode('Recording: ' + audio_number + ' of ' + length))
         indexing.appendChild(document.createElement("br"))
         indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createTextNode('Context : ' + context[index]))
+        indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createElement("br"))
     }
 
     
@@ -157,6 +160,7 @@ function DownloadIt(blob){
 
     console.log('finished')
     document.getElementById("rerecord").innerHTML = "";
+    document.getElementById("indexing").innerHTML = "";
     begin()
 }
 
