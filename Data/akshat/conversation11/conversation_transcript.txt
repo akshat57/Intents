@@ -1,0 +1,9 @@
+Query :मेरे अकाउंट में कितना बैलेंस है
+Response : रमेश, आपका अकाउंट नंबर क्या है?
+
+Query :मेरा नाम रमेश है
+Response : What is the number?
+
+Query :12345
+Response : आपका नाम क्या है?
+

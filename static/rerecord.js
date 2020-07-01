@@ -163,5 +163,3 @@ function DownloadIt(blob){
     document.getElementById("indexing").innerHTML = "";
     begin()
 }
-
-
