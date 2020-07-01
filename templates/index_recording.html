@@ -17,12 +17,17 @@
       <li>If the input audio was not recognized, you will be asked to record the same thing again.</li>
     </ul><br>
     
+
+    <h2>Conversation:</h2>
+    <h3 id="demo"></h3><br>
     <div id="controls">
-     <button id="recordButton">Record</button>
-     <button id="stopButton" disabled>Stop</button>
-    </div>
-    <div id="formats">Format: start recording to see sample rate</div>
-    <h2 id="demo"></h2>
+      <button id="recordButton">Record</button>
+      <button id="stopButton" disabled>Stop</button>
+     </div><br><br>
+
+    <div id="myDiv">
+      Is the conversation finished? <a href="#" id="yes" onclick="clickedYes()">Yes</a>
+    </div><br><br><br><br><br>
 
     <p><strong>Conversation logs:</strong></p>
     <ol id="recordingsList"></ol>
@@ -35,9 +40,5 @@
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script type="text/javascript" src="/static/js/app.js"></script>
 
-    <div id="myDiv">
-      <h3>Is the conversation finished? </h3>
-      <a href="#" id="yes" onclick="clickedYes()">Yes</a>
-    </div>
   </body>
 </html>

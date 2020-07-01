@@ -13,28 +13,28 @@ from helper_functions import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yabadabadoooo'
 
+#Login Page
 @app.route('/', methods=['GET', 'POST'])
 def index():
     session['parent_directory'] = os.getcwd()
-    return render_template('index.html')
+    session['context'] = ['नमस्ते! मैं आपकी क्या सहायता करूं ?']
+
+    return render_template('index.html', myvariable='', login='')
 
 
-@app.route('/login_yes', methods=['POST'])
-def login_yes():
+@app.route('/logintest', methods=['POST'])
+def logintest():
     login_id = request.form['login_id']
+    print('----------entered login test----------')
     #check if username exists. If yes, go to recording. If no, show error and redirect to 
     login_exists = check_login(session['parent_directory'], login_id)
 
     if login_exists:
-        return redirect(url_for('recording', name=login_id))
+        prompt = 'Welcome back : ' + login_id
     else:
-        return redirect(url_for('index'))
+        prompt = 'New login ID created : ' + login_id
 
-
-@app.route('/login_no', methods=['POST'])
-def login_no():
-    login_id = request.form['login_id']
-    return render_template('new_id_created.html', login_id=login_id)
+    return render_template('index.html', myvariable=prompt, login=login_id)
 
 
 @app.route("/recording/<name>", methods=['GET', 'POST'])
@@ -63,7 +63,7 @@ def recording(name):
         query, response, intent, success = talk_to_agent(parent_directory, filename, sample_rate)
 
         #Display on website
-        response_file_name = "r" + str(random.randint(0,10)) + ".txt"
+        response_file_name = "r" + str(random.randint(0,10000)) + ".txt"
         response_location = parent_directory + '/templates/'
         file = open( response_location + response_file_name,"w")
         file.write('Querry: ' + query + '<br>' + 'Response: ' + response)
@@ -74,36 +74,44 @@ def recording(name):
             file = open( 'conversation_list.txt', 'a')
             file.write(filename + '\n')
             file.close()
+            session['context'].append(response)
+            session['context'] = session['context']
             
 
         os.chdir(parent_directory)
 
         print(response)
+    
         return render_template(response_file_name, name=name, response='Hi')
 
     else:
         print(request.method, 'FOR RECORDING')
 
+
         #Create a new conversation directory. It is the working directory. 
         session['working_directory'] = start_conversation(name)
         print('Working directory:', session['working_directory'])
 
-        response = 'Greetings!'
+        response = session['context']
         return render_template("index_recording.html", name=name, response=response)
 
 
 
 @app.route('/decide_repeat', methods=['POST'])
 def process():
-    print('----------entered here-------------')
     input_message = request.form['messagebox']
+
     print(input_message)
+    file = open( "message.txt","a")
+    file.write(input_message)
+    file.close()
+
     return render_template('index_decide_repeat.html')
 
 
 @app.route('/repeat', methods=['GET', 'POST'])
 def repeat():
-    
+    print(len(session['context']), session['context'])
     os.chdir(session['working_directory'])
     filenames = get_file_names(session['working_directory'])
     print(filenames)
@@ -123,14 +131,18 @@ def repeat():
 
     except:
         print('first entry', request.method)
-        language = request.form['language']
+        language = request.form['languages']
+        if language == 'Other':
+            language = request.form['otherlanguage']
+
         file = open( "second_language.txt","w")
         file.write(language)
         file.close()
 
-
+    print(session['context'])
     os.chdir(session['parent_directory'])
-    return render_template('index_repeat.html', filenames=filenames, length=len(filenames))
+    return render_template('index_repeat.html', filenames=filenames, length=len(filenames), context=session['context'])
+
 
 @app.route('/play_audio/<path:filename>')
 def download_file(filename):

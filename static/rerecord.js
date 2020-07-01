@@ -10,6 +10,9 @@ function begin(){
         indexing.appendChild(document.createTextNode('Press play to hear what you recorded. Then press record to record again. '))
         indexing.appendChild(document.createElement("br"))
         indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createTextNode('Context : ' + context[index]))
+        indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createElement("br"))
     }
 
     
@@ -160,7 +163,6 @@ function DownloadIt(blob){
     console.log('finished')
     document.getElementById("indexing").innerHTML = "";
     document.getElementById("rerecord").innerHTML = "";
+    document.getElementById("indexing").innerHTML = "";
     begin()
 }
-
-

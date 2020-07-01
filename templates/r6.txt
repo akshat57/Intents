@@ -1,1 +1,0 @@
-Querry: लगता है कुछ हो रहा है<br>Response: What is your name?

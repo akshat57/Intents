@@ -21,7 +21,9 @@ function clickedYes(){
     var myDiv = document.getElementById("myDiv")
     myDiv.appendChild(document.createElement("br"))
     myDiv.appendChild(document.createElement("br"))
-    myDiv.appendChild(document.createTextNode('Message Box'))
+    myDiv.appendChild(document.createTextNode('Please type in any comments you have. Else, leave blank and press SUBMIT'))
+    myDiv.appendChild(document.createElement("br"))
+    myDiv.appendChild(document.createElement("br"))
 
     //creating form
     var f = document.createElement("form");
@@ -29,16 +31,20 @@ function clickedYes(){
     f.action = "/decide_repeat"
 
     //Create Text Box
-    var input = document.createElement("input");
+    var input = document.createElement("textarea");
     input.type = "text";
     input.name = "messagebox"
+    input.rows = "5"
+    input.cols = "30"
+
 
     var input_button = document.createElement("input");
     input_button.type = "submit";
     input_button.value = "Submit";
 
-    f.appendChild(input_button)
     f.appendChild(input)
+    f.appendChild(input_button)
+
 
     myDiv.appendChild(f)
 
@@ -82,7 +88,7 @@ function startRecording() {
         audioContext = new AudioContext();
 
         //update the format 
-        document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
+        //document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
         sampleRate = audioContext.sampleRate
 
         /*  assign to gumStream for later use  */
