@@ -33,6 +33,7 @@ function clickedYes(){
     input.type = "text";
     input.name = "messagebox"
 
+
     var input_button = document.createElement("input");
     input_button.type = "submit";
     input_button.value = "Submit";
@@ -82,7 +83,7 @@ function startRecording() {
         audioContext = new AudioContext();
 
         //update the format 
-        document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
+        //document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
         sampleRate = audioContext.sampleRate
 
         /*  assign to gumStream for later use  */

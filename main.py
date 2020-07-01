@@ -13,28 +13,26 @@ from helper_functions import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yabadabadoooo'
 
+#Login Page
 @app.route('/', methods=['GET', 'POST'])
 def index():
     session['parent_directory'] = os.getcwd()
-    return render_template('index.html')
+    return render_template('index.html', myvariable='', login='')
 
 
-@app.route('/login_yes', methods=['POST'])
-def login_yes():
+@app.route('/logintest', methods=['POST'])
+def logintest():
     login_id = request.form['login_id']
+    print('----------entered login test----------')
     #check if username exists. If yes, go to recording. If no, show error and redirect to 
     login_exists = check_login(session['parent_directory'], login_id)
 
     if login_exists:
-        return redirect(url_for('recording', name=login_id))
+        prompt = 'Welcome back : ' + login_id
     else:
-        return redirect(url_for('index'))
+        prompt = 'New login ID created : ' + login_id
 
-
-@app.route('/login_no', methods=['POST'])
-def login_no():
-    login_id = request.form['login_id']
-    return render_template('new_id_created.html', login_id=login_id)
+    return render_template('index.html', myvariable=prompt, login=login_id)
 
 
 @app.route("/recording/<name>", methods=['GET', 'POST'])
@@ -63,7 +61,7 @@ def recording(name):
         query, response, intent, success = talk_to_agent(parent_directory, filename, sample_rate)
 
         #Display on website
-        response_file_name = "r" + str(random.randint(0,10)) + ".txt"
+        response_file_name = "r" + str(random.randint(0,10000)) + ".txt"
         response_location = parent_directory + '/templates/'
         file = open( response_location + response_file_name,"w")
         file.write('Querry: ' + query + '<br>' + 'Response: ' + response)
@@ -84,20 +82,25 @@ def recording(name):
     else:
         print(request.method, 'FOR RECORDING')
 
+
         #Create a new conversation directory. It is the working directory. 
         session['working_directory'] = start_conversation(name)
         print('Working directory:', session['working_directory'])
 
-        response = 'Greetings!'
+        response = 'नमस्ते! मैं आपकी क्या सहायता करूं ?'
         return render_template("index_recording.html", name=name, response=response)
 
 
 
 @app.route('/decide_repeat', methods=['POST'])
 def process():
-    print('----------entered here-------------')
     input_message = request.form['messagebox']
+
     print(input_message)
+    file = open( "message.txt","a")
+    file.write(filename + '\n')
+    file.close()
+
     return render_template('index_decide_repeat.html')
 
 

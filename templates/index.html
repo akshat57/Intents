@@ -10,15 +10,38 @@
 
   <body>
     <h1>Hi.</h1>
-    <h3>Please answer the following to go to the login page.</h3><br>
+    <h3>Please use a unique ID to login. Use andrew ID if CMU student.</h3><br><br>
+
+    <form method="POST" action="/logintest">
+      <input type="text" name="login_id"><br><br>
+      <input type="submit" value="Submit">
+    </form>
     
-    <p>Do you already have a login ID?
-        <a href="#" id="yes" onclick="clickedYes()">Yes</a>
-        <a href="#" id="no" onclick="clickedNo()">No</a> 
-    </p>
     
-    
+    <br><br><br><br>
     <div id="container"/>
-    <script type="text/javascript" src="/static/script.js"></script>
+    <script type="text/javascript">
+      var myvariable= {{ myvariable|tojson }}
+      var login_id= {{ login|tojson }}
+      var delayInMilliseconds = 3000;
+      var container = document.getElementById("container");
+      console.log(typeof myvariable, myvariable)
+
+      if (myvariable !== ""){
+        container.appendChild(document.createTextNode(myvariable))
+        container.appendChild(document.createElement("br"))
+        container.appendChild(document.createElement("br"))
+        container.appendChild(document.createTextNode('Redirecting in 3 seconds....'))
+
+        // add a timer
+        setTimeout(function() {
+          console.log('Did the delay')
+          nexturl = '/recording/' + login_id
+          console.log(nexturl)
+          window.location.href = nexturl;
+        }, delayInMilliseconds);
+      }
+
+    </script>
   </body>
 </html>
