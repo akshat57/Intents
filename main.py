@@ -98,7 +98,7 @@ def process():
 
     print(input_message)
     file = open( "message.txt","a")
-    file.write(filename + '\n')
+    file.write(input_message)
     file.close()
 
     return render_template('index_decide_repeat.html')
@@ -106,7 +106,6 @@ def process():
 
 @app.route('/repeat', methods=['GET', 'POST'])
 def repeat():
-    
     os.chdir(session['working_directory'])
     filenames = get_file_names(session['working_directory'])
     print(filenames)
@@ -126,7 +125,10 @@ def repeat():
 
     except:
         print('first entry', request.method)
-        language = request.form['language']
+        language = request.form['languages']
+        if language == 'Other':
+            language = request.form['otherlanguage']
+
         file = open( "second_language.txt","w")
         file.write(language)
         file.close()
