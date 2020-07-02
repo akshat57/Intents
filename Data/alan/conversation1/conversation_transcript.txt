@@ -1,3 +1,0 @@
-Query :पहाड़गंज
-Response : What is your account number?
-
