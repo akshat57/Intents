@@ -21,9 +21,6 @@ function clickedYes(){
     var myDiv = document.getElementById("myDiv")
     myDiv.appendChild(document.createElement("br"))
     myDiv.appendChild(document.createElement("br"))
-    myDiv.appendChild(document.createTextNode('Please type in any comments you have. Else, leave blank and press SUBMIT'))
-    myDiv.appendChild(document.createElement("br"))
-    myDiv.appendChild(document.createElement("br"))
 
     //creating form
     var f = document.createElement("form");
@@ -47,6 +44,9 @@ function clickedYes(){
 
 
     myDiv.appendChild(f)
+    myDiv.appendChild(document.createTextNode('Please type in any comments you have. Else, leave blank and press SUBMIT'))
+    myDiv.appendChild(document.createElement("br"))
+    myDiv.appendChild(document.createElement("br"))
 
     myDiv.appendChild(document.createElement("br"))
     myDiv.appendChild(document.createElement("br"))
