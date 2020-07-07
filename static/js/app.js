@@ -56,6 +56,9 @@ function clickedYes(){
 
 function startRecording() {
     console.log("recordButton clicked");
+    var my_message = document.getElementById("mymessage")
+    my_message.appendChild(document.createElement("br"))
+    my_message.appendChild(document.createTextNode('Recoding...'))
 
     /*
         Simple constraints object, for more advanced audio features see
@@ -118,6 +121,9 @@ function startRecording() {
 
 function stopRecording() {
     console.log("stopButton clicked");
+    var my_message = document.getElementById("mymessage")
+    my_message.appendChild(document.createElement("br"))
+    my_message.appendChild(document.createTextNode('Please wait for the Bank to respond....'))
 
     //disable the stop button, enable the record too allow for new recordings
     stopButton.disabled = true;
@@ -157,6 +163,7 @@ function DownloadIt(blob){
             li.appendChild(document.createTextNode( convo[1] ))
             li.appendChild(document.createElement("br"))
             recordingsList.appendChild(li);
+            document.getElementById("mymessage").innerHTML = "";
         }
     };
 

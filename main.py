@@ -66,7 +66,7 @@ def recording(name):
         response_file_name = "r" + str(random.randint(0,10000)) + ".txt"
         response_location = parent_directory + '/templates/'
         file = open( response_location + response_file_name,"w")
-        file.write('Querry: ' + query + '<br>' + 'Response: ' + response)
+        file.write('You : ' + query + '<br>' + 'Bank : ' + response)
         file.close()
 
 
@@ -92,7 +92,7 @@ def recording(name):
         session['working_directory'] = start_conversation(name)
         print('Working directory:', session['working_directory'])
 
-        response = session['context']
+        response = 'Bank : ' + session['context'][0]
         return render_template("index_recording.html", name=name, response=response)
 
 

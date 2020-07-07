@@ -2,56 +2,102 @@
 <html>
   <head>
     <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Simple Recorder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .my-col {
+          border: 1px solid black;
+          text-align: center;
+      }
+    </style>
+
+  
   </head>
   <body>
-    <h1>Please start a conversation with our Dummy Banking App.</h1><br>
+    <nav class="navbar bg-dark text-light "><h1>Please start a conversation with our Dummy Banking App</h1></nav><br>
 
-  <h2>Instructions :</h2>
-    <ul>
-      <li>Press 'Record' to begin recording</li>
-      <li>Press 'Stop' to stop recording.</li>
-      <li>What you said (Query) and the agent response (Response) will be displayed. Please respond accordingly by pressing record again.</li>
-      <li>If the input audio was not recognized, please record the same thing again.</li>
-      <li>Press 'yes' after you think the conversation is finished.</li>
-    </ul><br>
+    <div class="container">
+
+    <h2>Instructions :</h2>
+      <ul>
+        <li>The Bank will ask you questions.</li>
+        <li>Press 'Reply' to begin recording your reply.</li>
+        <li>Press 'Stop' to stop recording.</li>
+        <li>Please respond to the questions asked by the Bank as you see fit.</li>
+        <li>Only after your conversation is finished, please press 'yes'.</li>
+      </ul><br>
 
 
-  <h3>What should I ask the app?</h3>
-    
-    Please ask the app about any ONE of the following:
-    <ul>
-      <li> Enquire about your hypothetical last transaction</li>
-      <li> Enquire about your account balance</li>
-      <li> Ask the app the send money to someone</li>
-      <li> Ask the app to withdraw money</li>
-      <li> Ask the app to deposit money</li>
-    </ul><br>
-    
+    <h3>What should I ask the app?</h3>
+      
+      Please ask the app about any ONE of the following:
+      <ul>
+        <li> Ask to send money to someone</li>
+        <li> Ask about your account balance</li>
+        <li> Ask about your hypothetical last transaction</li>
+        <li> Ask to withdraw money</li>
+        <li> Ask to deposit money</li>
+      </ul><br>
+      
 
-    <h2>Conversation:</h2>
-    <h3 id="demo"></h3><br>
-    <div id="controls">
-      <button id="recordButton">Record</button>
-      <button id="stopButton" disabled>Stop</button>
-     </div><br><br>
+      <div class="container my-container">
+        <row class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <h2>Conversation Box:</h2>
 
-    <div id="myDiv">
-      Is the conversation finished? <a href="#" id="yes" onclick="clickedYes()">Yes</a>
-    </div><br><br><br><br><br>
+          </div>
+          <div class="col-2"></div>
 
-    <p><strong>Conversation logs:</strong></p>
-    <ol id="recordingsList"></ol>
-    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
-    <script type="text/javascript">
-      var name= {{ name|tojson }}
-      var response = {{ response|tojson }}
-      document.getElementById("demo").innerHTML = response
-    </script>
-    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-    <script type="text/javascript" src="/static/js/app.js"></script>
+        </row>
 
+        <row class="row my-row">
+          <div class="col-2"></div>
+          <div class="col-8 my-col">
+            <br>
+            <h3 id="demo"></h3><br>
+            <div id="controls">
+              <button id="recordButton">Reply</button>
+              <button id="stopButton" disabled>Stop</button>
+
+              <div id="mymessage"></div>
+            </div><br><br>
+
+          </div>
+          <div class="col-2"></div>
+        </row>
+
+        <row class="row">
+          <div class="col-3">
+            <br><br>
+            <div id="myDiv">
+              Is the conversation finished? <a href="#" id="yes" onclick="clickedYes()">Yes</a>
+            </div>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-6">
+            <br><br>
+            <p><strong>Conversation logs:</strong></p>
+            <ol id="recordingsList"></ol>
+            <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+            <script type="text/javascript">
+              var name= {{ name|tojson }}
+              var response = {{ response|tojson }}
+              document.getElementById("demo").innerHTML = response
+            </script>
+            <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+            <script type="text/javascript" src="/static/js/app.js"></script>
+
+          </div>
+
+        </row>
+      </div>
+
+
+
+    </div>
   </body>
 </html>

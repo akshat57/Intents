@@ -48,8 +48,8 @@ function clickedYes(){
     languageList.appendChild(option);
 
     var option = document.createElement("option");
-    option.value = "Telegu"
-    option.text = "Telegu"
+    option.value = "Telugu"
+    option.text = "Telugu"
     languageList.appendChild(option);
 
     var option = document.createElement("option");

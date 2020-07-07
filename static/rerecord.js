@@ -5,14 +5,22 @@ function begin(){
 
     if (length > 0 && index < length){
         var indexing = document.getElementById("indexing");
-        indexing.appendChild(document.createTextNode('Recording: ' + audio_number + ' of ' + length))
-        indexing.appendChild(document.createElement("br"))
+
+        var header = document.createElement('h3');
+        var text = document.createTextNode('Recording : ' + audio_number + ' of ' + length)
+        header.appendChild(text)
+        indexing.appendChild(header)
+
+        //indexing.appendChild(document.createTextNode('Recording : ' + audio_number + ' of ' + length))
+        //indexing.appendChild(document.createElement("br"))
         indexing.appendChild(document.createTextNode('Press play to hear what you recorded. Then press record to record again. '))
         indexing.appendChild(document.createElement("br"))
         indexing.appendChild(document.createElement("br"))
-        indexing.appendChild(document.createTextNode('Context : ' + context[index]))
         indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createTextNode('Bank : ' + context[index]))
+        //indexing.appendChild(document.createElement("br"))
         indexing.appendChild(document.createElement("br"))
+        indexing.appendChild(document.createTextNode('Your response:'))
     }
 
     
@@ -25,6 +33,8 @@ function begin(){
         var rerecord = document.getElementById("rerecord");
 
         rerecord.innerHTML = '<audio id="audio-player" controls="controls" src="/play_audio/' + filename + '" type="audio/wav">';
+        rerecord.appendChild(document.createElement("br"))
+        rerecord.appendChild(document.createElement("br"))
         rerecord.appendChild(document.createElement("br"))
         rerecord.appendChild(document.createElement("br"))
 
@@ -40,7 +50,7 @@ function begin(){
         //Adding record and stop buttons
         button = document.createElement("button")
         button.id = "recordButton"
-        button.innerHTML = "Record";
+        button.innerHTML = "Re-Record";
         rerecord.appendChild(button)
 
         button = document.createElement("button")
@@ -48,6 +58,9 @@ function begin(){
         button.disabled = true
         button.innerHTML = "Stop";
         rerecord.appendChild(button)
+
+        rerecord.appendChild(document.createElement("br"))
+        rerecord.appendChild(document.createElement("br"))
 
         window.recordButton = document.getElementById("recordButton");
         window.stopButton = document.getElementById("stopButton");
@@ -161,8 +174,21 @@ function DownloadIt(blob){
 
 
     console.log('finished')
-    document.getElementById("indexing").innerHTML = "";
-    document.getElementById("rerecord").innerHTML = "";
-    document.getElementById("indexing").innerHTML = "";
-    begin()
+
+    //pausing for affect
+    var delayInMilliseconds = 2000;
+
+    var my_message = document.getElementById("rerecord")
+    my_message.appendChild(document.createTextNode('Loading next recording...'))
+
+    // add a timer
+    setTimeout(function() {
+        document.getElementById("indexing").innerHTML = "";
+        document.getElementById("rerecord").innerHTML = "";
+        document.getElementById("indexing").innerHTML = "";
+        begin()
+    }, delayInMilliseconds);
+
+
+
 }

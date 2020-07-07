@@ -2,46 +2,67 @@
 <html>
 
   <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="icon" href="data:,">
     <meta charset="UTF-8">
     <title>Simple Recorder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .my-col {
+          border: 1px solid black;
+          text-align: center;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>Re-recording in Second Language</h1>
-    <h2>Instructions:</h2>
-    <h3>Please re-record your previous messages in your selected languages.</h3>
-    <ol>
-      <li>Your previous recordings will be displayed one by one. Please play them again for reference by clicking the play button. </li>
-      <li>The context of the recordings is also given.</li>
-      <li>Then press 'Record' to record the translation of the audio in your chosen language.</li>
-      <li>Press 'Stop' when you're done recording.</li>
-      <li>Press <a href="#" id="yes" onclick="begin()">I HAVE READ THE INSTRUCTIONS</a> to begin.</li>
-    </ol><br><br>
-    
-    <div id="indexing">
+    <nav class="navbar bg-dark text-light "><h1>Re-recording in Second Language</h1></nav><br>
+
+    <div class="container">
+
+      <h2>Instructions:</h2>
+      <h3>Please re-record your previous messages in your selected languages.</h3>
+      <ul>
+        <li>Your previous recordings will be displayed one by one. </li>
+        <li>Please play them again for reference by clicking the play button. </li>
+        <li>The question aksed by the bank is also given.</li>
+        <li>Then press 'Reply' to record the reply in your chosen language.</li>
+        <li>Press 'Stop' when you're done recording.</li>
+        <li>Press <a href="#" id="yes" onclick="begin()">I HAVE READ THE INSTRUCTIONS</a> to begin.</li>
+      </ul><br><br>
+      
+
+
+      <div class="container my-container">
+
+        <row class="row my-row">
+          <div class="col-2"></div>
+          <div class="col-8 my-col">
+
+            <br>
+            <div id="indexing">
+            </div>
+
+            <div id="rerecord">
+            </div>
+
+            <script>
+              var filenames = {{filenames|tojson}}
+              var length = {{length|tojson}}
+              var context = {{context|tojson}}
+              var index = -1
+            </script>
+            <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+            <script type="text/javascript" src="/static/rerecord.js"></script>
+
+
+          </div>
+          <div class="col-2"></div>
+        </row>
+
+
+
+
     </div>
-
-    <div id="rerecord">
-    </div>
-
-    <script>
-      var filenames = {{filenames|tojson}}
-      var length = {{length|tojson}}
-      var context = {{context|tojson}}
-      var index = -1
-    </script>
-    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-    <script type="text/javascript" src="/static/rerecord.js"></script>
-
-
-
-
-
-
-
-
-
   </body>
 </html>
