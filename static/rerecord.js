@@ -1,7 +1,14 @@
-function begin(){
+function begin( dosomething ){
     console.log('And it begins')
-    index = index + 1
-    audio_number = index + 1
+    console.log(dosomething)
+    document.getElementById("indexing").innerHTML = "";
+    document.getElementById("rerecord").innerHTML = "";
+
+    if (dosomething == 1) {
+        index = index + 1
+        audio_number = index + 1
+        console.log('GOT IN HERE')
+    }
 
     if (length > 0 && index < length){
         var indexing = document.getElementById("indexing");
@@ -25,7 +32,6 @@ function begin(){
 
     
     if (index < length){
-        console.log(typeof filenames, typeof index, typeof length)
         console.log(index, length)
         console.log(filenames[0], filenames[1])
         var filename = filenames[index]
@@ -33,8 +39,6 @@ function begin(){
         var rerecord = document.getElementById("rerecord");
 
         rerecord.innerHTML = '<audio id="audio-player" controls="controls" src="/play_audio/' + filename + '" type="audio/wav">';
-        rerecord.appendChild(document.createElement("br"))
-        rerecord.appendChild(document.createElement("br"))
         rerecord.appendChild(document.createElement("br"))
         rerecord.appendChild(document.createElement("br"))
 
@@ -155,6 +159,68 @@ function stopRecording() {
 
 
 function DownloadIt(blob){
+	var url = URL.createObjectURL(blob);
+	var au = document.createElement('audio');
+
+    //add controls to the <audio> element
+	au.controls = true;
+	au.src = url;
+    
+    //adding the audio element to the conversation box
+    var checkrecording = document.getElementById("checkrecording")
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(document.createTextNode('Please check what you recorded by pressing play.'))
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(au)
+    checkrecording.appendChild(document.createElement("br"))
+
+    //adding buttons
+    var button = document.createElement("button")
+    button.id = "recordagain"
+    button.innerHTML = "Record Again"
+    checkrecording.appendChild(button)
+
+    var button = document.createElement("button")
+    button.id = "next"
+    button.innerHTML = "Next"
+    checkrecording.appendChild(button)
+
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(document.createElement("br"))
+
+    //calling functions
+    recordAgainButton = document.getElementById("recordagain")
+    goToNext = document.getElementById("next")
+
+    recordAgainButton.addEventListener("click", recordAgain)
+    goToNext.addEventListener("click", function(){nextRecording(blob)})
+
+}
+
+
+function recordAgain (){
+    console.log('Recording Again')
+
+    //pausing for affect
+    var delayInMilliseconds = 2000;
+
+    var my_message = document.getElementById("checkrecording")
+    my_message.appendChild(document.createTextNode('Recording again...'))
+
+    // add a timer
+    setTimeout(function() {
+        document.getElementById("indexing").innerHTML = "";
+        document.getElementById("rerecord").innerHTML = "";
+        document.getElementById("checkrecording").innerHTML = "";
+        begin(0)
+    }, delayInMilliseconds);
+}
+
+
+function nextRecording (blob){
+    console.log('Going to next recording')
+
     var filename = new Date().toISOString()
     var xhr=new XMLHttpRequest();
 
@@ -174,21 +240,18 @@ function DownloadIt(blob){
 
 
     console.log('finished')
-
     //pausing for affect
     var delayInMilliseconds = 2000;
 
-    var my_message = document.getElementById("rerecord")
+    var my_message = document.getElementById("checkrecording")
     my_message.appendChild(document.createTextNode('Loading next recording...'))
 
     // add a timer
     setTimeout(function() {
         document.getElementById("indexing").innerHTML = "";
         document.getElementById("rerecord").innerHTML = "";
-        document.getElementById("indexing").innerHTML = "";
-        begin()
+        document.getElementById("checkrecording").innerHTML = "";
+        begin(1)
     }, delayInMilliseconds);
-
-
 
 }
