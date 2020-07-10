@@ -24,7 +24,7 @@
         <li>Please do not give your real credentials.</li>
         <li>Please talk to the app in Hindi at first.</li>
         <li>If you speak another language, you will also be asked to re-record your messages in a second Indian language. </li>
-      </ol><br><br><br>
+      </ol>
       
 
       <h2>
@@ -33,7 +33,7 @@
 
 
       <h4>Please use a unique ID to login. Use andrew ID if CMU student.<br>
-      If this is your first time, please choose a login ID.</h4><br><br>
+      If this is your first time, please choose a login ID.</h4><br>
 
       <form method="POST" action="/logintest">
         <input type="text" name="login_id"><br><br>
@@ -41,7 +41,7 @@
       </form>
       
       
-      <br><br><br><br>
+      <br>
       <div id="container"/>
       <script type="text/javascript">
         var myvariable= {{ myvariable|tojson }}
@@ -52,7 +52,6 @@
 
         if (myvariable !== ""){
           container.appendChild(document.createTextNode(myvariable))
-          container.appendChild(document.createElement("br"))
           container.appendChild(document.createElement("br"))
           container.appendChild(document.createTextNode('Redirecting in 3 seconds....'))
 
@@ -67,6 +66,17 @@
 
       </script>
 
+      <row class="row">
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+        <div class="col-4">
+          Akshat Gupta : akshatgu@andrew.cmu.edu<br>
+          Sai Krishna Rallabandi : srallaba@cs.cmu.edu<br>
+          Alan Black : awb@cs.cmu.edu
+        </div>
+      </row>
+
+      
     </div>
   </body>
 </html>

@@ -121,9 +121,6 @@ function startRecording() {
 
 function stopRecording() {
     console.log("stopButton clicked");
-    var my_message = document.getElementById("mymessage")
-    my_message.appendChild(document.createElement("br"))
-    my_message.appendChild(document.createTextNode('Please wait for the Bank to respond....'))
 
     //disable the stop button, enable the record too allow for new recordings
     stopButton.disabled = true;
@@ -141,6 +138,61 @@ function stopRecording() {
 
 
 function DownloadIt(blob){
+    document.getElementById("mymessage").innerHTML = "";
+    document.getElementById("checkrecording").innerHTML = "";
+    var url = URL.createObjectURL(blob);
+	var au = document.createElement('audio');
+
+    //add controls to the <audio> element
+	au.controls = true;
+	au.src = url;
+    
+    //adding the audio element to the conversation box
+    var checkrecording = document.getElementById("checkrecording")
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(document.createTextNode('Please check what you recorded by pressing play.'))
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(au)
+    checkrecording.appendChild(document.createElement("br"))
+
+    //adding buttons
+    var button = document.createElement("button")
+    button.id = "recordagain"
+    button.innerHTML = "Record Again"
+    checkrecording.appendChild(button)
+
+    var button = document.createElement("button")
+    button.id = "next"
+    button.innerHTML = "Send to Bank"
+    checkrecording.appendChild(button)
+
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(document.createElement("br"))
+    checkrecording.appendChild(document.createElement("br"))
+
+    //calling functions
+    recordAgainButton = document.getElementById("recordagain")
+    goToNext = document.getElementById("next")
+
+    recordAgainButton.addEventListener("click", recordAgain)
+    goToNext.addEventListener("click", function(){nextRecording(blob)})
+}
+
+
+function recordAgain (){
+    console.log('Recording Again')
+    document.getElementById("checkrecording").innerHTML = "";
+    var my_message = document.getElementById("checkrecording")
+    my_message.appendChild(document.createTextNode('Please reply again...'))
+}
+
+
+function nextRecording (blob){
+    console.log('Going to next recording')
+    var my_message = document.getElementById("mymessage")
+    my_message.appendChild(document.createElement("br"))
+    my_message.appendChild(document.createTextNode('Please wait for the Bank to respond....'))
+
     var li = document.createElement('li');
     var filename = new Date().toISOString()
     var xhr=new XMLHttpRequest();
@@ -164,10 +216,12 @@ function DownloadIt(blob){
             li.appendChild(document.createElement("br"))
             recordingsList.appendChild(li);
             document.getElementById("mymessage").innerHTML = "";
+            document.getElementById("checkrecording").innerHTML = "";
         }
     };
 
 
     console.log('finished')
+
 }
 

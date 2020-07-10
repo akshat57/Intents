@@ -76,6 +76,20 @@ function begin( dosomething ){
     else {
         var rerecord = document.getElementById("rerecord");
         rerecord.appendChild(document.createTextNode("-----FINISHED -----"))
+        rerecord.appendChild(document.createElement("br"))
+        /*rerecord.appendChild(document.createTextNode("Want to try again? "))
+
+        //creating form
+        var f = document.createElement("form");
+        f.method = "POST"
+        f.action = "/repeat"
+
+        var option = document.createElement("submit");
+        option.value = "Click Here"
+        f.appendChild(option)
+
+        rerecord.appendChild(f)*/
+
     }
 
 }
