@@ -59,7 +59,7 @@ def start_conversation(name):
 
 def go_to_conversation(parent_directory, name):
     #Go to users conversation folder
-    conversation_folder = parent_directory + '/Data/' + name
+    conversation_folder = parent_directory + '/Data/' + name.lower()
     os.chdir(conversation_folder)
 
     #Create conversation folder for user
