@@ -66,7 +66,7 @@ def recording(name):
         response_file_name = "r" + str(random.randint(0,10000)) + ".txt"
         response_location = parent_directory + '/templates/'
         file = open( response_location + response_file_name,"w")
-        file.write('You : ' + query + '<br>' + 'Bank : ' + response)
+        file.write('What You Said : ' + query + '<br>' + "Bank's Response : " + response)
         file.close()
 
 
