@@ -71,9 +71,10 @@ def go_to_conversation(parent_directory, name):
     os.chdir(current_conversation)
 
 
-def talk_to_agent(parent_directory, filename, sample_rate):
+def talk_to_agent(parent_directory, filename, sample_rate, session_id):
+        print('........yo ......', session_id)
         conversation = parent_directory + '/conversation.py'
-        command = 'python3 ' + conversation + ' ' + ' ' + filename + ' ' + sample_rate
+        command = 'python3 ' + conversation + ' ' + filename + ' ' + sample_rate + ' ' + session_id
         os.system(command)
 
         #Storing Query, Response and Intent

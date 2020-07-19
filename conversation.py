@@ -3,11 +3,12 @@ import sys
 import os
 
 project_id = 'hinglish-banker-inwvsx'
-session_id = '1'
+#session_id = '1'
 language_code = 'hi'
 
 audio_file_path = sys.argv[1]
 sample_rate = int(sys.argv[2])
+session_id = sys.argv[3]
 response, query, intent, name = detect_intent_audio(project_id, session_id, audio_file_path, language_code, sample_rate)
 
 info_file = name + '_info'

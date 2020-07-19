@@ -18,6 +18,8 @@ app.config['SECRET_KEY'] = 'yabadabadoooo'
 def index():
     session['parent_directory'] = os.getcwd()
     session['context'] = ['नमस्ते! मैं आपकी क्या सहायता करूं ?']
+    session['id'] = str(random.randint(1,1000))
+    print('........po ......', session['id'])
 
     return render_template('index.html', myvariable='', login='')
 
@@ -60,7 +62,7 @@ def recording(name):
 
         sample_rate = request.form['sample_rate']
         #Contact dialogflow agent
-        query, response, intent, success = talk_to_agent(parent_directory, filename, sample_rate)
+        query, response, intent, success = talk_to_agent(parent_directory, filename, sample_rate, session['id'])
 
         #Display on website
         response_file_name = "r" + str(random.randint(0,10000)) + ".txt"
