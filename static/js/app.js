@@ -58,7 +58,7 @@ function startRecording() {
     console.log("recordButton clicked");
     var my_message = document.getElementById("mymessage")
     my_message.appendChild(document.createElement("br"))
-    my_message.appendChild(document.createTextNode('Recoding...'))
+    my_message.appendChild(document.createTextNode('Recording...'))
 
     /*
         Simple constraints object, for more advanced audio features see
